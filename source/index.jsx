@@ -19,7 +19,7 @@ class MainComponent extends React.Component {
 				</section>
 				<section id="price-input">
 					<div>
-						$ <input type="text" pattern="[0-9]*" onChange={this.handleChange} placeholder="0.00"></input> USD
+						$ <input type="text" onChange={this.handleChange} placeholder="0.00"></input> USD
 					</div>
 				</section>
 				<section id="result">
