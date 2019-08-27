@@ -8,7 +8,8 @@ class MainComponent extends React.Component {
 		};
 
 		this.handleChange = this.handleChange.bind(this);
-		this.getDogs = this.getDogs.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.getDogsText = this.getDogsText.bind(this);
 	}
 	render() {
 		return (
@@ -18,12 +19,12 @@ class MainComponent extends React.Component {
 					<h3>The premier USD-to-CHD currency converter</h3>
 				</section>
 				<section id="price-input">
-					<div>
+					<form onSubmit={this.handleSubmit}>
 						$ <input type="text" onChange={this.handleChange} placeholder="0.00"></input> USD
-					</div>
+					</form>
 				</section>
 				<section id="result">
-					{this.getDogs()}
+					{this.getDogsText()}
 				</section>
 			</div>
 		);
@@ -38,12 +39,15 @@ class MainComponent extends React.Component {
 			});
 		}
 	}
-	getDogs() {
+	handleSubmit(evt) {
+		evt.preventDefault();
+	}
+	getDogsText() {
 		if(!this.state.result) {
 			return '';
 		}
 		let strResult = Math.round(this.state.result * 10) / 10;
-		return (<p>{strResult} <span class="nowrap">Costco hot dogs</span></p>);
+		return (<p>{strResult} <span className="nowrap">Costco hot dogs</span></p>);
 	}
 }
 
