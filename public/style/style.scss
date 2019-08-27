@@ -1,0 +1,79 @@
+@import "normalize.css";
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+
+	background-color: #fff;
+
+	color: #333;
+	font-size: 30px;
+	font-family: 'Karla', 'sans-serif';
+	@media screen and (max-width: 500px) {
+		font-size: 7vw;
+	}
+}
+
+#root {
+	min-height: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+}
+
+#container {
+	max-width: 800px;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	text-align: center;
+
+	padding: 0 10px;
+
+	section {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		margin-top: 20px;
+	}
+}
+
+section#price-input {
+	margin-top: 50px;
+	input {
+		text-align: right;
+		padding: 8px;
+		width: 9em;
+		max-width: 50vw;
+	}
+}
+section#result {
+	margin-top: 50px;
+	font-size: 1.3em;
+	font-weight: bold;
+	word-break: break-all;
+}
+
+h1 {
+	font-size: 2.5em;
+	margin: .2em 0;
+	@media screen and (max-width: 500px) {
+		font-size: 11vw;
+	}
+}
+h3 {
+	font-size: 1em;
+	margin: .1em 0;
+	@media screen and (max-width: 500px) {
+		font-size: 4.4vw;
+	}
+}
+
+span.nowrap {
+	white-space: nowrap;
+}

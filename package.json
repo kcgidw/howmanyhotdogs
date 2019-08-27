@@ -1,0 +1,25 @@
+{
+  "name": "hotdogs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run babel && node-sass public/style/style.scss public/style/style.css --output-style compressed",
+    "babel": "babel source --out-dir public/js",
+    "babel-watch": "babel source --out-dir public/js --watch --verbose",
+    "sass-watch": "node-sass public/style/style.scss public/style/style.css --output-style compressed --watch",
+    "start": "http-server public"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "http-server": "^0.11.1",
+    "node-sass": "^4.12.0"
+  }
+}
