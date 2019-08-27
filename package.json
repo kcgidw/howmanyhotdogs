@@ -9,7 +9,7 @@
     "babel": "babel source --out-dir public/js",
     "babel-watch": "babel source --out-dir public/js --watch --verbose",
     "sass-watch": "node-sass public/style/style.scss public/style/style.css --output-style compressed --watch",
-    "start": "http-server public"
+    "start": "serve public"
   },
   "author": "",
   "license": "ISC",
@@ -19,7 +19,9 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
-    "http-server": "^0.11.1",
     "node-sass": "^4.12.0"
+  },
+  "dependencies": {
+    "serve": "^11.1.0"
   }
 }
