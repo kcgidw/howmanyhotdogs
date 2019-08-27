@@ -1,15 +1,25 @@
 @import "normalize.css";
 
+:root {
+	--gray100: hsl(210, 6%, 98%);
+	--gray200: hsl(210, 6%, 90%);
+	--gray300: hsl(210, 6%, 80%);
+	--gray400: hsl(210, 6%, 70%);
+	--gray500: hsl(210, 6%, 60%);
+	--gray700: hsl(210, 6%, 40%);
+	--gray900: hsl(210, 6%, 18%);
+}
+
 body {
 	min-height: 100vh;
 	margin: 0;
 	padding: 0;
 
-	background-color: #fff;
+	background-color: white;
 
-	color: #333;
+	color: var(--gray900);
 	font-size: 30px;
-	font-family: 'Karla', 'sans-serif';
+	font-family: 'Karla', sans-serif;
 	@media screen and (max-width: 500px) {
 		font-size: 7vw;
 	}
@@ -43,35 +53,52 @@ body {
 	}
 }
 
+section#header {
+	h1 {
+		font-size: 2.3em;
+		margin: 0;
+		@media screen and (max-width: 500px) {
+			font-size: 11vw;
+		}
+	}
+	h3 {
+		font-size: .9em;
+		margin: 0;
+		color: var(--gray400);
+		font-weight: normal;
+		@media screen and (max-width: 500px) {
+			font-size: 4.4vw;
+		}
+	}
+}
+
 section#price-input {
-	margin-top: 50px;
+	margin-top: 70px;
 	input {
 		text-align: right;
 		padding: 8px;
 		width: 9em;
 		max-width: 50vw;
+
+		border: solid 1px var(--gray400);
+		border-radius: 2px;
+
+		color: inherit;
+
+		&::placeholder {
+			color: var(--gray300);
+		}
 	}
 }
 section#result {
-	margin-top: 50px;
+	margin-top: 70px;
 	font-size: 1.3em;
 	font-weight: bold;
 	word-break: break-all;
 }
 
-h1 {
-	font-size: 2.5em;
-	margin: .2em 0;
-	@media screen and (max-width: 500px) {
-		font-size: 11vw;
-	}
-}
-h3 {
-	font-size: 1em;
-	margin: .1em 0;
-	@media screen and (max-width: 500px) {
-		font-size: 4.4vw;
-	}
+p {
+	margin: 0;
 }
 
 span.nowrap {
