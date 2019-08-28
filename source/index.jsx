@@ -20,7 +20,9 @@ class MainComponent extends React.Component {
 				</section>
 				<section id="price-input">
 					<form onSubmit={this.handleSubmit}>
-						$ <input type="text" onChange={this.handleChange} placeholder="0.00"></input> USD
+						<div>
+							$ <input type="text" onChange={this.handleChange} placeholder="0.00"></input> USD
+						</div>
 					</form>
 				</section>
 				<section id="result">
@@ -40,6 +42,8 @@ class MainComponent extends React.Component {
 		}
 	}
 	handleSubmit(evt) {
+		let inputElem = evt.target[0];
+		inputElem.blur(); // close mobile keyboards
 		evt.preventDefault();
 	}
 	getDogsText() {
