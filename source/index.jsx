@@ -32,9 +32,13 @@ class MainComponent extends React.Component {
 		);
 	}
 	handleChange(evt) {
+		let elem = evt.target;
 		let newInput = +evt.target.value;
+		// let regex = /^[0-9]*(\.[0-9]?[0-9]?)?$/;
 		if (isNaN(newInput)) {
+			elem.classList.add('invalid');
 		} else {
+			elem.classList.remove('invalid');
 			this.setState({
 				input: newInput,
 				result: toCHD(newInput),
@@ -47,7 +51,7 @@ class MainComponent extends React.Component {
 		evt.preventDefault();
 	}
 	getDogsText() {
-		if(!this.state.result) {
+		if(this.state.result === '') {
 			return '';
 		}
 		let strResult = Math.round(this.state.result * 10) / 10;
