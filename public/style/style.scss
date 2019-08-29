@@ -61,7 +61,7 @@ section#header {
 	font-family: 'Assistant', sans-serif;
 
 	h1 {
-		font-size: 2.3em;
+		font-size: 2em;
 		margin: 0;
 		font-weight: 700;
 		@media screen and (max-width: 500px) {
@@ -70,7 +70,7 @@ section#header {
 	}
 
 	h3 {
-		font-size: .95em;
+		font-size: .82em;
 		margin: 0;
 		color: var(--gray400);
 		font-weight: 600;
@@ -82,6 +82,9 @@ section#header {
 
 section#price-input {
 	margin-top: 70px;
+	form {
+		margin: 0;
+	}
 	input {
 		text-align: right;
 		padding: 8px;
@@ -104,9 +107,18 @@ section#price-input {
 }
 section#result {
 	margin-top: 70px;
-	font-size: 1.3em;
-	font-weight: 700;
-	word-break: break-all;
+
+	h1#result-value {
+		font-size: 2em;
+		font-weight: 700;
+		word-break: break-all;
+		margin: 0;
+	}
+
+	#result-desc {
+		white-space: nowrap;
+		font-size: 16px;
+	}
 }
 
 p {
@@ -115,4 +127,8 @@ p {
 
 span.nowrap {
 	white-space: nowrap;
+}
+
+.hidden {
+	display: none;
 }
