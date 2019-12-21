@@ -1,90 +1,81 @@
+const {useState, useEffect} = React;
 
-class MainComponent extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			input: '',
-			result: '',
-			showInvalid: false,
-		};
-
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.hasResult = this.hasResult.bind(this);
-	}
-	render() {
-		return (
-			<div id="container">
-				<section id="header">
-					<h1>howmanyhotdogs</h1>
-					<h3>The premier USD-to-CHD currency converter</h3>
-				</section>
-				<section id="price-input">
-					<form onSubmit={this.handleSubmit}>
-						<div>
-							$ <input type="text" onChange={this.handleChange} placeholder="0.00"></input> USD
-						</div>
-						{/* <div id="validation-comment" className={this.state.showInvalid ? '' : 'hidden'}>Invalid input</div> */}
-					</form>
-				</section>
-				<section id="result">
-					<h1 id="result-value" className={this.hasResult() ? '' : 'hidden'}>
-						{this.state.result}
-					</h1>
-					<div id="result-desc" className={this.hasResult() ? '' : 'hidden'}>
-						Costco hot dogs*
-					</div>
-				</section>
-			</div>
-		);
-	}
-	hasResult() {
-		return this.state.result !== undefined && this.state.result !== '';
-	}
-	handleChange(evt) {
-		let elem = evt.target;
-		let inputVal = evt.target.value.trim();
-		let newInput = +inputVal;
-		// let regex = /^[0-9]*(\.[0-9]?[0-9]?)?$/;
-		if (isNaN(newInput)) { // invalid
-			elem.classList.add('invalid');
-			this.setState({
-				result: '',
-				showInvalid: true,
-			});
-		} else {
-			elem.classList.remove('invalid');
-			if (inputVal === '') { // empty input
-				this.setState({
-					result: '',
-					showInvalid: false,
-				});
-			} else { // valid input
-				this.setState({
-					input: newInput,
-					result: roundCHD(toCHD(newInput)),
-					showInvalid: false,
-				});
-			}
-		}
-	}
-	handleSubmit(evt) {
-		let inputElem = evt.target[0];
-		inputElem.blur(); // close mobile keyboards
-		evt.preventDefault();
-	}
-}
-
-const dogPrice = 1.5;
+const DOG_PRICE = 1.50;
 
 function toCHD(usdAmount) {
-	return usdAmount / dogPrice;
+	return usdAmount / DOG_PRICE;
 }
+
 function roundCHD(amt) {
 	return Math.round(amt * 10) / 10;
 }
 
+const Home = () => {
+	const [inputString, setInputString] = useState('');
+	const [result, setResult] = useState('');
+	const [warnInput, setWarnInput] = useState(true);
+
+	// validate input
+	useEffect(() => {
+		const input = +inputString;
+		if (Number.isNaN(input)) {
+			// invalid input
+			setResult('');
+			setWarnInput(true);
+		} else {
+			if (inputString === '') {
+				// empty input
+				setResult('');
+				setWarnInput(false);
+			} else {
+				// valid input
+				setInputString(input);
+				setResult(roundCHD(toCHD(input)));
+				setWarnInput(false);
+			}
+		}
+	}, [inputString]);
+
+	const handleSubmit = (evt) => {
+		const inputElem = evt.target[0];
+		inputElem.blur(); // close mobile keyboards
+		evt.preventDefault();
+	};
+
+	const hasResult = result !== undefined && result !== '';
+
+	return (
+		<div id="container">
+			<section id="header">
+				<h1>howmanyhotdogs</h1>
+				<h3>The premier USD-to-CHD currency converter</h3>
+			</section>
+
+			<section id="price-input">
+				<form onSubmit={handleSubmit}>
+					<div>
+						$ <input
+							type="text"
+							onChange={(evt) => setInputString(evt.target.value.trim())}
+							placeholder="0.00"
+							className={warnInput ? 'invalid' : ''}></input> USD
+					</div>
+				</form>
+			</section>
+
+			<section id="result">
+				<h1 id="result-value" className={hasResult ? '' : 'hidden'}>
+					{result}
+				</h1>
+				<div id="result-desc" className={hasResult ? '' : 'hidden'}>
+					Costco hot dogs
+				</div>
+			</section>
+		</div>
+	);
+};
+
 ReactDOM.render(
-	<MainComponent />,
+	<Home />,
 	document.getElementById('root')
 );
